@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.orderSystem.dao.CategoryMapper" >
+ 
+  
+  <select id="getCategoryList" resultType="cn.orderSystem.model.Category" parameterType="cn.orderSystem.model.Category" >
+    select
+    * from 
+    t_commodity_category
+  </select>
+  
+  
+  </mapper>

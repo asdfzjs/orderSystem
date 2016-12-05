@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.orderSystem.dao.AccountMapper" >
+ 
+  
+	<insert id="addAccount" parameterType="cn.orderSystem.model.Account" useGeneratedKeys="true" keyProperty="id">
+	    INSERT INTO t_account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != mem_id">
+				mem_id,
+			</if>
+			<if test="null != uname">
+				uname,
+			</if>
+			<if test="null != password">
+				password,
+			</if>
+			<if test="null != email">
+				email,
+			</if>
+			<if test="null != phone">
+				phone,
+			</if>
+			<if test="null != registTime">
+				registTime,
+			</if>
+			<if test="null != channel">
+				channel,
+			</if>
+			<if test="null != status">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != mem_id and '' != mem_id ">
+				#{mem_id,jdbcType=VARCHAR},
+			</if>
+			<if test="null != uname and '' != uname ">
+				#{uname,jdbcType=VARCHAR},
+			</if>
+			<if test="null != password and '' != password ">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="null != email and '' != email ">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="null != phone and '' != phone ">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="null != registTime and '' != registTime ">
+				#{registTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != channel and '' != channel ">
+				#{channel,jdbcType=VARCHAR},
+			</if>
+			<if test="null != status and '' != status ">
+				#{status,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+  
+  <!-- 删除一条记录 -->  
+    <delete id="delete" parameterType="cn.orderSystem.model.Account">  
+        delete from t_account where mem_id = #{mem_id}  
+    </delete>
+    
+     <!-- 更新一条记录 -->  
+    <update id="updateAccount" parameterType="cn.orderSystem.model.Account">  
+        update t_account set uname = #{uname},status=#{status},phone=#{phone},
+        channel=#{channel},registTime=#{registTime}
+        where mem_id = #{mem_id} 
+    </update>
+  </mapper>

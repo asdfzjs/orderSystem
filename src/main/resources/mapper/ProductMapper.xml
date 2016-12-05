@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.orderSystem.dao.ProductMapper" >
+ 
+  
+  <select id="searchProduct" resultType="cn.orderSystem.model.Product" parameterType="cn.orderSystem.model.Product" >
+    select
+    * from 
+    t_commodity
+  </select>
+  
+  <insert id="addProduct" parameterType="cn.orderSystem.model.Product" useGeneratedKeys="true" keyProperty="id">
+	    INSERT INTO t_commodity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != commodityID">
+				commodityID,
+			</if>
+			<if test="null != commdityCategoryID">
+				commdityCategoryID,
+			</if>
+			<if test="null != commditySeriesID">
+				commditySeriesID,
+			</if>
+			<if test="null != commdityName">
+				commdityName,
+			</if>
+			<if test="null != commdityLevelID">
+				commdityLevelID,
+			</if>
+			<if test="null != length">
+				length,
+			</if>
+			<if test="null != width">
+				width,
+			</if>
+			<if test="null != height">
+				height,
+			</if>
+			<if test="null != price">
+				price,
+			</if>
+			<if test="null != priceunit">
+				priceunit,
+			</if>
+			<if test="null != colorCode">
+				colorCode,
+			</if>
+			<if test="null != count">
+				count,
+			</if>
+			<if test="null != specification">
+				specification,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != commodityID and '' != commodityID ">
+				#{commodityID,jdbcType=VARCHAR},
+			</if>
+			<if test="null != commdityCategoryID and '' != commdityCategoryID ">
+				#{commdityCategoryID,jdbcType=VARCHAR},
+			</if>
+			<if test="null != commditySeriesID and '' != commditySeriesID ">
+				#{commditySeriesID,jdbcType=VARCHAR},
+			</if>
+			<if test="null != commdityName and '' != commdityName ">
+				#{commdityName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != commdityLevelID and '' != commdityLevelID ">
+				#{commdityLevelID,jdbcType=VARCHAR},
+			</if>
+			<if test="null != length and '' != length ">
+				#{length,jdbcType=DOUBLE},
+			</if>
+			<if test="null != width and '' != width ">
+				#{width,jdbcType=DOUBLE},
+			</if>
+			<if test="null != height and '' != height ">
+				#{height,jdbcType=DOUBLE},
+			</if>
+			<if test="null != price and '' != price ">
+				#{price,jdbcType=DOUBLE},
+			</if>
+			<if test="null != priceunit and '' != priceunit ">
+				#{priceunit,jdbcType=VARCHAR},
+			</if>
+			<if test="null != colorCode and '' != colorCode ">
+				#{colorCode,jdbcType=VARCHAR},
+			</if>
+			<if test="null != count and '' != count ">
+				#{count,jdbcType=INTEGER},
+			</if>
+			<if test="null != specification and '' != specification ">
+				#{specification,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+  
+  </mapper>

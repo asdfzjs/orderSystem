@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.orderSystem.dao.AdminMapper">
+  <resultMap id="BaseResultMap" type="cn.orderSystem.model.Admin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="adminName" jdbcType="VARCHAR" property="adminName" />
+    <result column="adminPwd" jdbcType="VARCHAR" property="adminPwd" />
+  </resultMap>
+ 
+ <sql id="Base_Column_List">
+    id,adminName,adminPwd
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="login" parameterType="cn.orderSystem.model.Admin" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_admin
+    where adminName= #{adminName,jdbcType=VARCHAR}
+    and adminPwd = #{adminPwd,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updatePwd" parameterType="cn.orderSystem.model.Admin">
+    update t_admin
+    set adminPwd = #{newPwd,jdbcType=VARCHAR}
+    where adminName = #{adminName,jdbcType=VARCHAR}
+  </update>
+  
+  
+</mapper>

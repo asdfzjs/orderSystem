@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.orderSystem.dao.EnterpriseMapper" >
+ 
+  
+  <select id="searchEnterprise" resultType="cn.orderSystem.model.Enterprise" parameterType="cn.orderSystem.model.Enterprise" >
+    select
+    * from 
+    t_enterprise a left join t_account b
+    on a.mem_id = b.mem_id
+     <trim prefix="where" prefixOverrides="and">
+			 <if test="fullname != null and fullname != '' ">  
+                and a.fullname = #{fullname, jdbcType=VARCHAR}  
+      		</if> 
+      		<if test="province != null and province != '' ">  
+                and a.province = #{province, jdbcType=VARCHAR}  
+      		</if>
+      		<if test="city != null and city != '' ">  
+                and a.city = #{city, jdbcType=VARCHAR}  
+      		</if>
+      		<if test="mem_id != null and mem_id != '' ">  
+                and a.mem_id = #{mem_id, jdbcType=VARCHAR}  
+      		</if>
+		</trim>	
+  </select>
+  
+  
+  
+	<insert id="addEnterprise" parameterType="cn.orderSystem.model.Enterprise" useGeneratedKeys="true" keyProperty="id">
+	    INSERT INTO t_enterprise
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != mem_id">
+				mem_id,
+			</if>
+			<if test="null != title">
+				title,
+			</if>
+			<if test="null != fullname">
+				fullname,
+			</if>
+			<if test="null != province">
+				province,
+			</if>
+			<if test="null != city">
+				city,
+			</if>
+			<if test="null != address">
+				address,
+			</if>
+			<if test="null != contact">
+				contact,
+			</if>
+			<if test="null != telephone">
+				telephone,
+			</if>
+			<if test="null != fax">
+				fax,
+			</if>
+			<if test="null != registTime">
+				registTime,
+			</if>
+			<if test="null != startdate">
+				startdate,
+			</if>
+			<if test="null != enddate">
+				enddate,
+			</if>
+			<if test="null != provinceCode">
+				provinceCode,
+			</if>
+			<if test="null != cityCode">
+				cityCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != mem_id and '' != mem_id ">
+				#{mem_id,jdbcType=VARCHAR},
+			</if>
+			<if test="null != title and '' != title ">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="null != fullname and '' != fullname ">
+				#{fullname,jdbcType=VARCHAR},
+			</if>
+			<if test="null != province and '' != province ">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="null != city and '' != city ">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="null != address and '' != address ">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="null != contact and '' != contact ">
+				#{contact,jdbcType=VARCHAR},
+			</if>
+			<if test="null != telephone and '' != telephone ">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="null != fax and '' != fax ">
+				#{fax,jdbcType=VARCHAR},
+			</if>
+			<if test="null != registTime and '' != registTime ">
+				#{registTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != startdate and '' != startdate ">
+				#{startdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != enddate and '' != enddate ">
+				#{enddate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != provinceCode and '' != provinceCode ">
+				#{provinceCode,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cityCode and '' != cityCode ">
+				#{cityCode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+  
+  
+  
+    <!-- 删除一条记录 -->  
+    <delete id="delete" parameterType="cn.orderSystem.model.Enterprise">  
+        delete from t_enterprise where mem_id = #{mem_id}  
+    </delete>  
+    
+    <!-- 更新一条记录 -->  
+    <update id="updateEnterprise" parameterType="cn.orderSystem.model.Enterprise">  
+        update t_enterprise set title = #{title},   fullname = #{fullname}   ,province = #{province}
+        ,city = #{city} , address = #{address} ,contact=#{contact},telephone = #{telephone},
+        fax=#{fax},registTime=#{registTime},startdate=#{startdate},enddate=#{enddate}
+        where mem_id = #{mem_id} 
+    </update>
+    
+  </mapper>
